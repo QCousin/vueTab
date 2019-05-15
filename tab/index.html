@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            float: left;
+            padding: 10px;
+        }
+        
+        .section {
+            width: 200px;
+            height: 360px;
+            border: 1px solid #ccc;
+            margin-top: 100px;
+        }
+        
+        [v-cloak] {
+            display: none;
+        }
+        
+        .active {
+            background: plum;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <header class="header">
+            <span v-for="(item,index) in arr" :class="{active:index == ind}" @click="clickfn(index)">{{item.txt}}</span>
+        </header>
+        <section class="section">
+            <p v-for="(item,index) in arr[ind].cont" :style="styleObj">{{item}}</p>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                // color: "plum",
+                styleObj: {
+                    color: "plum",
+                },
+                ind: 0,
+                arr: [{
+                    txt: "爱豆",
+                    cont: "我的爱豆"
+                }, {
+                    txt: "热点",
+                    cont: "今日热点"
+                }, {
+                    txt: "七喜",
+                    cont: "我是七喜"
+                }, {
+                    txt: "微博",
+                    cont: "我的微博"
+                }]
+            },
+            methods: {
+                clickfn(ind) {
+                    this.ind = ind
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
